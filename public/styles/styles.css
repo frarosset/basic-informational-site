@@ -1,0 +1,206 @@
+:root {
+  --col-white: #ffffff;
+  --col-black: #263238;
+  --col-gray: #e0e0e0;
+
+  --bg-col: var(--col-black);
+  --col-txt: var(--col-white);
+  --secondary-col: var(--col-gray);
+
+  --default-font: sans-serif;
+  --default-lineheight: 1.5;
+  --default-fontsize: max(18px, 2vmin);
+
+  --base-radius: 8px;
+  --base-padding: 0.6em 1.2em;
+  --base-gap: 0.3em;
+
+  --page-padding-tb: 0.5em;
+  --page-padding-lr: 1em;
+  --header-padding: var(--page-padding-tb) var(--page-padding-lr);
+  --header-gap: var(--base-gap);
+
+  font-family: var(--default-font);
+  line-height: var(--default-lineheight);
+  font-weight: 400;
+  font-size: var(--default-fontsize);
+
+  color-scheme: light dark;
+  color: var(--col-txt);
+  background-color: var(--bg-col);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset */
+*,
+*:before,
+*:after {
+  font-family: inherit;
+  font-size: inherit; /* 100% */
+  line-height: inherit;
+  color: inherit;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  vertical-align: baseline;
+  -webkit-tap-highlight-color: transparent;
+  /* see: https://www.joshwcomeau.com/css/custom-css-reset/ */
+  line-height: calc(1em + 0.5rem);
+}
+
+body {
+  margin: 0 auto;
+  min-height: 100vh; /*it is assumed the same for <html>*/
+  min-height: 100dvh; /* if supported */
+  height: 100vh; /*it is assumed the same for <html>*/
+  height: 100dvh; /* if supported */
+
+  min-width: 320px;
+  width: 100%;
+  /* or max-width -- this avoids horizontal scroll bars */
+
+  touch-action: manipulation; /* disable double tap to zoom on some browsers*/
+  user-select: none;
+
+  overflow: hidden hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  isolation: isolate;
+
+  background-image: url(https://apod.nasa.gov/apod/image/2505/IssTransit_Sanz_2569.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+body > * {
+  backdrop-filter: blur(5px) brightness(50%);
+}
+
+header {
+  display: flex;
+  align-items: center;
+
+  padding: var(--header-padding);
+  gap: var(--header-gap);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+}
+
+h1 {
+  flex: 1;
+}
+
+img.main-picture {
+  min-height: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5vmin black);
+}
+
+/* Basic elements */
+/* see: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  font-weight: 500;
+  text-decoration: inherit;
+}
+a:hover {
+  opacity: 0.85;
+}
+
+button {
+  border-radius: var(--base-radius);
+  border: 1px solid transparent;
+  padding: var(--base-padding);
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+a,
+button {
+  transition: opacity, transform 0.25s;
+}
+
+a:hover,
+button:hover {
+  opacity: 0.85;
+}
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+input:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+a:active,
+button:active:not(:disabled) {
+  transform: scale(1.1);
+}
+
+/* Customize scrollbars */
+::-webkit-scrollbar {
+  width: 4px; /* width of the entire scrollbar */
+  height: 4px; /* height of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* color of the scroll thumb */
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* color of the scroll thumb on hover */
+}
