@@ -18,6 +18,14 @@ http
           res.writeHead(200, { "Content-Type": "text/html" });
           res.end(data);
         });
+        break;
+      case "/favicon.ico":
+        // Ignore favicon icon request
+        console.log("Ignoring favicon request");
+
+        res.writeHead(204); // No Content
+        res.end();
+        return;
     }
   })
   .listen(port, () => console.log(`Server listening on port ${port}`));
