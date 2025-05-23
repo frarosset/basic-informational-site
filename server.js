@@ -7,9 +7,9 @@ const publicUrl = "./public";
 http
   .createServer((req, res) => {
     console.log("Requesting file:", req.url);
-    let filepath = "";
+    let filepath = req.url;
     let returnCode = 200;
-    let contentType = "text/text";
+    let contentType = "text/plain";
 
     switch (req.url) {
       case "/":
@@ -17,12 +17,13 @@ http
         contentType = "text/html";
         break;
       case "/styles/styles.css":
-        filepath = req.url;
         contentType = "text/css";
         break;
       case "/js/loadDailyData.js":
-        filepath = req.url;
         contentType = "text/javascript";
+        break;
+      case "/svg/astro.svg":
+        contentType = "image/svg+xml";
         break;
       case "/favicon.ico":
         // Ignore favicon icon request
