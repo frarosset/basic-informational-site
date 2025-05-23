@@ -74,7 +74,7 @@ body {
 
   isolation: isolate;
 
-  background-image: url(https://apod.nasa.gov/apod/image/2505/IssTransit_Sanz_2569.jpg);
+  /* background-image: url(...); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
