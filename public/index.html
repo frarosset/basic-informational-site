@@ -14,7 +14,31 @@
       <a href="#">About</a>
     </header>
     <main>
-      <img class="picture main-picture" src="" alt="Loading..." />
+      <div class="picture-container">
+        <!-- The src of the next image depends on the loading / success data / error status -->
+        <img class="picture main-picture" src="./svg/astro.svg" alt="Loading" />
+        <!-- Inline svg to be superimposed to the previous one that can be modified programmatically -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xml:space="preserve"
+          viewBox="195.24 89.02 378.2 399.04"
+        >
+          <text
+            id="svgtext"
+            transform="translate(400.282 341.63)"
+            style="fill: #fff; font-family: 'Impact'; font-size: 13px"
+          >
+            Loading ...
+          </text>
+          <text
+            id="svgsubtext"
+            transform="translate(195.24 403.603)"
+            style="fill: #fff; font-family: 'Rockwell'; font-size: 13.625px"
+            x="50%"
+            text-anchor="middle"
+          ></text>
+        </svg>
+      </div>
     </main>
   </body>
 </html>

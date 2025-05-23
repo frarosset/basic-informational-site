@@ -10,6 +10,8 @@
 
 (() => {
   const picture = document.querySelector(".picture");
+  const text = document.getElementById("svgtext");
+  const subtext = document.getElementById("svgsubtext");
 
   function getApiUrl() {
     // fix API not working correctly in certain timezones / times
@@ -66,10 +68,14 @@
     picture.alt = data.title;
 
     document.body.style.backgroundImage = `url(${imageUrl})`;
+
+    text.textContent = "";
+    subtext.textContent = data.date;
   }
 
   function setError(err) {
-    picture.alt = err;
+    text.textContent = "HOUSTON, WE HAVE A PROBLEM";
+    subtext.textContent = err;
   }
 
   loadDailyData();

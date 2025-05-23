@@ -102,8 +102,31 @@ h1 {
   flex: 1;
 }
 
-img.main-picture {
+.picture-container {
+  display: grid;
+  align-content: center;
+  justify-items: center;
   min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: var(--page-padding-tb) 0;
+}
+
+.picture-container > * {
+  /* Superimpose the children elements */
+  grid-row: 1;
+  grid-column: 1;
+  min-height: 0;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.picture-container > svg {
+  z-index: 1;
+}
+
+.picture-container > img.main-picture {
   object-fit: contain;
   filter: drop-shadow(0 0 5vmin black);
 }
