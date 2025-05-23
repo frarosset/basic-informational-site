@@ -9,7 +9,7 @@ http
     console.log("Requesting file:", req.url);
     let filepath = "";
     let returnCode = 200;
-    let contentType = "text/plain";
+    let contentType = "text/text";
 
     switch (req.url) {
       case "/":
@@ -19,6 +19,10 @@ http
       case "/styles/styles.css":
         filepath = req.url;
         contentType = "text/css";
+        break;
+      case "/js/loadDailyData.js":
+        filepath = req.url;
+        contentType = "text/javascript";
         break;
       case "/favicon.ico":
         // Ignore favicon icon request
