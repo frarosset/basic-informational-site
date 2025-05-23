@@ -7,7 +7,8 @@
   --col-txt: var(--col-white);
   --secondary-col: var(--col-gray);
 
-  --default-font: sans-serif;
+  --default-font: Rockwell, monospace;
+  --alt-font: Impact, sans-serif;
   --default-lineheight: 1.5;
   --default-fontsize: max(18px, 2vmin);
 
@@ -72,14 +73,22 @@ body {
   flex-direction: column;
   align-items: stretch;
 
-  isolation: isolate;
-
   /* background-image: url(...); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
-body > * {
+
+.page {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  isolation: isolate;
+}
+
+.page:has(.image-of-the-day) {
   backdrop-filter: blur(5px) brightness(50%);
 }
 
@@ -152,7 +161,7 @@ h1 {
   z-index: 1;
 }
 
-.picture-container > img.main-picture {
+.picture-container > * {
   object-fit: contain;
   filter: drop-shadow(0 0 5vmin black);
 }

@@ -64,6 +64,7 @@
     const imageUrl =
       data.media_type == "image" ? data.hurl || data.url : data.thumbnail_url;
 
+    picture.classList.add("image-of-the-day");
     picture.src = imageUrl;
     picture.alt = data.title;
 

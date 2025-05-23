@@ -8,41 +8,47 @@
     <title>Cosmic Daily Glimpse</title>
   </head>
   <body>
-    <header>
-      <a href="#" aria-label="More info"
-        ><span class="icon icon-info"></span
-      ></a>
-      <h1>Cosmic Daily Glimpse</h1>
-      <a href="#" aria-label="About"
-        ><span class="icon icon-question-mark"></span
-      ></a>
-    </header>
-    <main>
-      <div class="picture-container">
-        <!-- The src of the next image depends on the loading / success data / error status -->
-        <img class="picture main-picture" src="./svg/astro.svg" alt="Loading" />
-        <!-- Inline svg to be superimposed to the previous one that can be modified programmatically -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xml:space="preserve"
-          viewBox="195.24 89.02 378.2 399.04"
-        >
-          <text
-            id="svgtext"
-            transform="translate(400.282 341.63)"
-            style="fill: #fff; font-family: 'Impact'; font-size: 13px"
+    <div class="page">
+      <header>
+        <a href="#" aria-label="More info"
+          ><span class="icon icon-info"></span
+        ></a>
+        <h1>Cosmic Daily Glimpse</h1>
+        <a href="#" aria-label="About"
+          ><span class="icon icon-question-mark"></span
+        ></a>
+      </header>
+      <main>
+        <div class="picture-container">
+          <!-- The src of the next image depends on the loading / success data / error status -->
+          <img
+            class="picture main-picture"
+            src="./svg/astro.svg"
+            alt="Loading"
+          />
+          <!-- Inline svg to be superimposed to the previous one that can be modified programmatically -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xml:space="preserve"
+            viewBox="195.24 89.02 378.2 399.04"
           >
-            Loading ...
-          </text>
-          <text
-            id="svgsubtext"
-            transform="translate(195.24 403.603)"
-            style="fill: #fff; font-family: 'Rockwell'; font-size: 13.625px"
-            x="50%"
-            text-anchor="middle"
-          ></text>
-        </svg>
-      </div>
-    </main>
+            <text
+              id="svgtext"
+              transform="translate(400.282 341.63)"
+              style="fill: #fff; font-family: 'Impact'; font-size: 13px"
+            >
+              Loading ...
+            </text>
+            <text
+              id="svgsubtext"
+              transform="translate(195.24 403.603)"
+              style="fill: #fff; font-family: 'Rockwell'; font-size: 13.625px"
+              x="50%"
+              text-anchor="middle"
+            ></text>
+          </svg>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
