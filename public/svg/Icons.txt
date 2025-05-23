@@ -1,0 +1,4 @@
+Icons from Phosphor Icons
+Link: https://phosphoricons.com/
+
+Icons have been converted to base64 and embedded in the css files directly.
