@@ -16,6 +16,10 @@ http
         filepath = "/index.html";
         contentType = "text/html";
         break;
+      case "/about":
+        filepath = "/about.html";
+        contentType = "text/html";
+        break;
       case "/styles/styles.css":
         contentType = "text/css";
         break;
