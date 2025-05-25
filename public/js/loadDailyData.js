@@ -28,7 +28,7 @@
   async function loadDailyData() {
     let responseStatus;
 
-    fetch(getApiUrl(), { mode: "cors" })
+    fetch(getApiUrl(), { mode: "cors", cache: "force-cache" })
       .then((response) => {
         responseStatus = response.status;
         return response.json();
