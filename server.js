@@ -9,8 +9,6 @@ const baseUrl = "/index.html"; // page to load at url "/"
 
 http
   .createServer((req, res) => {
-    console.log("Requesting file:", req.url);
-
     // Ignore favicon icon request
     if (req.url == "/favicon.ico") {
       console.log("Ignoring favicon request");
@@ -25,7 +23,21 @@ http
     // Load the file at the path (relative the the working directory) and return it
     fs.readFile(filePath, (err, data) => {
       if (err) {
-        throw err;
+        console.log(err);
+
+        // load error page
+        const { filePath, returnCode } = getInfoOfErrorFile(err);
+
+        fs.readFile(filePath, (errOnErr, errPage) => {
+          if (errOnErr) {
+            console.log(errOnErr);
+          }
+
+          res.writeHead(returnCode, { "Content-Type": "text/html" });
+          res.end(errOnErr ? err : errPage);
+        });
+
+        return;
       }
 
       res.writeHead(200, { "Content-Type": contentType }); // OK
@@ -45,4 +57,18 @@ function getInfoOfFileToGet(reqUrl) {
   const contentType = contentTypes[fileExt];
 
   return { filePath: publicUrl + filePath, contentType };
+}
+
+function getInfoOfErrorFile(err) {
+  let filePath, returnCode;
+
+  if (err.code === "ENOENT") {
+    filePath = "/404.html";
+    returnCode = 404;
+  } else {
+    filePath = "/500.html";
+    returnCode = 500;
+  }
+
+  return { filePath: publicUrl + filePath, returnCode };
 }
