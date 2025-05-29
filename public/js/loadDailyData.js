@@ -13,6 +13,15 @@
   const text = document.getElementById("svgtext");
   const subtext = document.getElementById("svgsubtext");
 
+  const todayDataLabels = ["date", "title", "explanation", "link", "copyright"];
+
+  const todayData = todayDataLabels.map((label) => ({
+    label,
+    ref: document.querySelector(`.today-${label}`),
+  }));
+
+  const toadyVideoLink = document.querySelector(".today-videourl-link");
+
   function getApiUrl() {
     // fix API not working correctly in certain timezones / times
     // Sometimes, the data for today are not available
@@ -59,10 +68,9 @@
   }
 
   function setData(data) {
-    console.log(data);
-
     const imageUrl =
       data.media_type == "image" ? data.hurl || data.url : data.thumbnail_url;
+    const videoUrl = data.media_type == "video" ? data.url : null;
 
     picture.classList.add("image-of-the-day");
     picture.src = imageUrl;
@@ -70,13 +78,29 @@
 
     document.body.style.backgroundImage = `url(${imageUrl})`;
 
-    text.textContent = "";
-    subtext.textContent = data.date;
+    if (toadyVideoLink && videoUrl) {
+      toadyVideoLink.style.visibility = "visible";
+      toadyVideoLink.href = videoUrl;
+    }
+
+    if (text) text.textContent = "";
+    if (subtext) subtext.textContent = "";
+
+    todayData.forEach(({ label, ref }) => {
+      if (ref && data[label]) {
+        if (label == "copyright") {
+          ref.textContent = `Image Credit & Copyright: ${data[label]}`;
+        } else {
+          ref.textContent = data[label];
+        }
+      }
+    });
   }
 
   function setError(err) {
-    text.textContent = "HOUSTON, WE HAVE A PROBLEM";
-    subtext.textContent = err;
+    if (text) text.textContent = "HOUSTON, WE HAVE A PROBLEM";
+    if (subtext) subtext.textContent = err;
+    console.log(err);
   }
 
   loadDailyData();
