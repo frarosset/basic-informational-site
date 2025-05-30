@@ -3,7 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const contentTypes = require("./assets/contentTypes.json");
 
-const port = 80;
+const port = 8080;
 const publicUrl = "./public"; // relative to the working directory
 const baseUrl = "/index.html"; // page to load at url "/"
 
