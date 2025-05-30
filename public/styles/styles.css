@@ -5,6 +5,7 @@
 
   --bg-col: var(--col-black);
   --col-txt: var(--col-white);
+  --col-txt-p: var(--col-grey);
   --secondary-col: var(--col-gray);
 
   --default-font: Rockwell, monospace;
@@ -20,6 +21,13 @@
   --page-padding-lr: 1em;
   --header-padding: var(--page-padding-tb) var(--page-padding-lr);
   --header-gap: var(--base-gap);
+
+  --main-gap: 5vmax;
+  --text-padding-lr: 5vw;
+  --text-width-h: min(50vw, 40em);
+  --text-width-v: 100%;
+  --in-section-gap: 0.5lh;
+  --section-padding-b: 1lh;
 
   font-family: var(--default-font);
   line-height: var(--default-lineheight);
@@ -100,6 +108,10 @@ header {
   gap: var(--header-gap);
 }
 
+header h1 {
+  flex: 1;
+}
+
 header a .icon {
   background: var(--col-txt);
   font-size: inherit;
@@ -135,11 +147,19 @@ main {
   display: flex;
   justify-content: center;
   flex: 1;
+  flex-direction: column;
   min-height: 0;
+  padding: var(--page-padding-tb) 0;
+  gap: var(--main-gap);
+  --text-width: var(--text-width-v);
 }
 
-h1 {
-  flex: 1;
+@media screen and (min-width: 900px) and (orientation: landscape) {
+  main {
+    flex-direction: row;
+    gap: 0;
+    --text-width: var(--text-width-h);
+  }
 }
 
 .picture-container {
@@ -149,7 +169,6 @@ h1 {
   min-height: 0;
   width: 100%;
   max-width: 100%;
-  padding: var(--page-padding-tb) 0;
 }
 
 .picture-container > * {
@@ -160,15 +179,36 @@ h1 {
   max-width: 100%;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5vmax black);
 }
 
 .picture-container > svg {
   z-index: 1;
 }
 
-.picture-container > * {
-  object-fit: contain;
-  filter: drop-shadow(0 0 5vmin black);
+.text-container {
+  min-height: 0;
+  max-height: 100%;
+  padding: 0 var(--text-padding-lr);
+  min-width: var(--text-width);
+  width: var(--text-width);
+  max-width: var(--text-width);
+  overflow: hidden auto;
+  align-self: center;
+}
+
+.today-videourl-link {
+  display: block;
+  text-transform: uppercase;
+  padding: var(--section-padding-b) 0;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--in-section-gap);
+  padding-bottom: var(--section-padding-b);
 }
 
 /* Basic elements */
@@ -192,17 +232,35 @@ h5,
 h6 {
   overflow-wrap: break-word;
   hyphens: auto;
-  text-wrap: balance;
+  text-wrap: pretty;
+}
+
+h2 {
+  font-size: 5vmax;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  font-family: var(--alt-font);
+}
+
+p,
+a {
+  color: var(--col-txt-p);
 }
 
 p {
   text-wrap: pretty;
 }
 
-ul,
+/* ul,
 ol {
   list-style: none;
-}
+} */
 
 a {
   font-weight: 500;
