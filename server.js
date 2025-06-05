@@ -2,10 +2,11 @@ const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
 const contentTypes = require("./assets/contentTypes.json");
+require("dotenv").config();
 
-const port = 8080;
-const publicUrl = "./public"; // relative to the working directory
-const baseUrl = "/index.html"; // page to load at url "/"
+const port = process.env.PORT || 8080;
+const publicUrl = process.env.PUBLIC_URL || "./public"; // relative to the working directory
+const baseUrl = process.env.BASE_URL || "/index.html"; // page to load at url "/"
 
 http
   .createServer((req, res) => {
