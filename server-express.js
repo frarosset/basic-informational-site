@@ -7,6 +7,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 const publicUrl = process.env.PUBLIC_URL || "./public"; // relative to the working directory
 const indexUrl = process.env.BASE_URL || "/index.html"; // page to load at url "/"
+const errFolderUrl = process.env.ERR_FOLDER_URL || "./views"; // page to load at url "/"
 
 // Serve static files (HTML, CSS, JS)
 const absPublicUrl = path.join(__dirname, publicUrl);
@@ -41,7 +42,7 @@ app.use((err, req, res, next) => {
 
   res
     .status(returnCode)
-    .sendFile(path.join(absPublicUrl, filePath), (errOnErr) => {
+    .sendFile(path.join(__dirname, errFolderUrl, filePath), (errOnErr) => {
       if (errOnErr) res.sendStatus(returnCode);
     });
 });

@@ -7,6 +7,7 @@ require("dotenv").config();
 const port = process.env.PORT || 8080;
 const publicUrl = process.env.PUBLIC_URL || "./public"; // relative to the working directory
 const baseUrl = process.env.BASE_URL || "/index.html"; // page to load at url "/"
+const errFolderUrl = process.env.ERR_FOLDER_URL || "./views"; // page to load at url "/"
 
 http
   .createServer((req, res) => {
@@ -57,19 +58,12 @@ function getInfoOfFileToGet(reqUrl) {
 
   const contentType = contentTypes[fileExt];
 
-  return { filePath: publicUrl + filePath, contentType };
+  return { filePath: path.join(__dirname, publicUrl, filePath), contentType };
 }
 
 function getInfoOfErrorFile(err) {
-  let filePath, returnCode;
+  const returnCode = err.code === "ENOENT" ? 404 : 500;
+  const filePath = path.join(__dirname, errFolderUrl, `${returnCode}.html`);
 
-  if (err.code === "ENOENT") {
-    filePath = "/404.html";
-    returnCode = 404;
-  } else {
-    filePath = "/500.html";
-    returnCode = 500;
-  }
-
-  return { filePath: publicUrl + filePath, returnCode };
+  return { filePath, returnCode };
 }
