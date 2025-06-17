@@ -9,6 +9,32 @@ const publicUrl = process.env.PUBLIC_URL || "./public"; // relative to the worki
 const indexUrl = process.env.BASE_URL || "/index.html"; // page to load at url "/"
 const errFolderUrl = process.env.ERR_FOLDER_URL || "./views"; // page to load at url "/"
 
+// Middleware to handle user navigation requests to indexUrl (redirect to "/")
+app.get([indexUrl, getUrlWithoutExt(indexUrl)], (req, res) => {
+  res.redirect(301, "/");
+});
+
+// Middleware to handle user navigation requests to public files
+app.use((req, res, next) => {
+  const secFetchMode = req.get("sec-fetch-mode");
+  const ext = path.extname(req.path);
+
+  if (secFetchMode == "navigate" && ext != "") {
+    if (ext == ".html") {
+      const redirectPath = getUrlWithoutExt(req.path);
+
+      res.redirect(301, redirectPath);
+    } else {
+      const err = new Error("File not found");
+      err.code = "ENOENT";
+
+      throw err;
+    }
+  } else {
+    next();
+  }
+});
+
 // Serve static files (HTML, CSS, JS)
 const absPublicUrl = path.join(__dirname, publicUrl);
 app.use(
@@ -54,4 +80,8 @@ function getInfoOfErrorFile(err) {
   const filePath = `/${returnCode}.html`;
 
   return { filePath, returnCode };
+}
+
+function getUrlWithoutExt(url) {
+  return url.slice(0, url.length - path.extname(url).length);
 }
